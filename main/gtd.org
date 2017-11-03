@@ -1,0 +1,79 @@
+#+TITLE: Organize My Life In Plain Text
+#+AUTHOR: 胡琛
+
+* Work 
+
+* Personal
+  
+** NEXT 台湾大学李宏毅 -- Machine Learning [0/22]
+   SCHEDULED: <2017-11-03 周五 08:30>
+   :LOGBOOK:
+   CLOCK: [2017-11-03 周五 13:38]--[2017-11-03 周五 14:03] =>  0:25
+   CLOCK: [2017-11-03 周五 13:06]--[2017-11-03 周五 13:31] =>  0:25
+   CLOCK: [2017-11-02 周四 11:05]--[2017-11-02 周四 11:30] =>  0:25
+   :END:
+   
+   - [ ] What is Machine Learning
+   
+   - [ ] Neural Network
+
+   - [ ] Backpropagation
+
+   - [ ] Theano-DNN
+
+   - [ ] Tips For Training DNN
+
+   - [ ] Neural Network with Memory
+
+   - [ ] Theano-RNN
+
+   - [ ] Training RNN
+
+   - [ ] Intro to Structured Learning
+
+   - [ ] Structured Linear Model
+
+   - [ ] Structured SVM
+
+   - [ ] Sequence Labeling Problem
+
+   - [ ] SVM Structure
+
+   - [ ] Learning with Hidden Info
+
+   - [ ] Graphical Model Gibbs Sampling
+
+   - [ ] Markov Login Network
+
+   - [ ] Human Language Processing
+
+   - [ ] Language Modeling
+
+   - [ ] Caffe
+
+   - [ ] Deep Reinforcement Learning
+
+   - [ ] Unsupervised Learning
+
+   - [ ] Attention-based Model
+   
+     
+   
+** TODO VNPY 学习
+   
+* Miscellaneous
+
+* Habit
+
+** NEXT TradeBlazer 日常策略系列
+   SCHEDULED: <2017-11-01 周三 19:30>
+   :LOGBOOK:
+   CLOCK: [2017-11-01 周三 20:03]--[2017-11-01 周三 20:17] =>  0:14
+   CLOCK: [2017-11-01 周三 19:33]--[2017-11-01 周三 19:58] =>  0:25
+   :END:
+   
+*** WAITING 反应趋势交易系统 (RTS)                                  :WAITING:
+    
+*** NEXT 自适应交易系统
+
+** NEXT 掘金量化日常策略系列
