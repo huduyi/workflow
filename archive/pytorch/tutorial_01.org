@@ -1,0 +1,164 @@
+#+TITLE: PyTorch 学习笔记 01
+#+AUTHOR: 胡琛
+
+* Tensors
+
+** Warm-up: numpy
+
+   利用 =numpy= 我们可以实现一个简单的神经网络模型。下面是一个简单的两层网络的实现：
+
+   #+BEGIN_SRC python
+     # -*- coding: utf-8 -*-
+     import numpy as np
+
+     # N is batch size; D_in is input dimension
+     # H is hidden dimension; D_out is output dimension
+     N, D_in, H, D_out = 64, 1000, 100, 10
+
+     # Create random input and output data
+     x = np.random.randn(N, D_in)
+     y = np.random.randn(N, D_out)
+
+     # Randomly initialize weights
+     w1 = np.random.randn(D_in, H)
+     w2 = np.random.randn(H, D_out)
+
+     learning_rate = 1e-6
+     for t in range(500):
+         # Forward pass: compute predicted y
+         h = x.dot(w1)
+         h_relu = np.maximum(h, 0)
+         y_pred = h_relu.dot(w2)
+
+         # Compute and print loss
+         loss = np.square(y_pred - y).sum()
+         print(t, loss)
+
+         # Backprop to compute gradients of w1 and w2 with respect to loss
+         grad_y_pred = 2.0*(y_pred - y) # which is denoted as delta_L+1
+         grad_w2 = h_relu.T.dot(grad_y_pred) # which is denoted as partial C/partial w
+         grad_h_relu = grad_y_pred.dot(w2.T) # which can be calculates using BP and denoted as delta_L+1 dot w^T
+         grad_h = grad_h_relu.copy()
+         grad_h[h<0] = 0
+         grad_w1 = x.T.dot(grad_h)
+
+         # Update weights
+         w1 -= learning_rate*grad_w1
+         w2 -= learning_rate*grad_w2
+   #+END_SRC
+   
+** PyTorch: Tensors 
+   
+   =Numpy= 对于向量计算很方便，但是其不能使用 GPU 来加速运算，是它的缺陷。对于现代的深度神经网络， GPU 通常可以提供 50 倍
+   甚至更多的加速。
+
+   =PyTorch= 和 =numpy= 很相似， 一个 =PyTorch Tensor= 相当于一个 =numpy= 的 =array=, 但是 =PyTorch= 可以使用 GPU
+   来进行计算，对于上面的结构，我们用 =PyTorch= 来实现，可以写成：
+
+   #+BEGIN_SRC python
+     # -*- coding: utf-8 -*-
+
+     import torch
+
+     dtype = torch.FloatTensor
+     # dtype = torch.cuda.FloatTensor # Uncomment this to run on GPU
+
+     # N is batch size; D_in is input dimension;
+     # H is hidden dimension; D_out is output dimension
+     N, D_in, H, D_out = 64, 1000, 100, 10
+
+     # Create random input and output data
+     x = torch.random.randn(N, D_in).type(dtype)
+     y = torch.random.randn(N, D_out).type(dtype)
+
+     # Randomly initialize weights
+     w1 = torch.random.randn(D_in, H).type(dtype)
+     w2 = torch.random.randn(H, D_out).type(dtype)
+
+     learning_rate = 1e-6
+     for t in range(500):
+         # Forward pass: compute predicted y
+         h = x.mm(w1)
+         h_relu = h.clamp(min=0)
+         y_pred = h_relu.mm(w2)
+
+         # Compute and print loss
+         loss = (y_pred - y).pow(2).sum()
+         print(t, loss)
+
+         # Backprop to compute gradients of w1 and w2 with respect to loss
+         grad_y_pred = 2*(y_pred - y)
+         grad_w2 = h_relu.t().mm(grad_y_pred)
+         grad_h_relu = grad_y_pred.mm(w2.t())
+         grad_h = grad_h_relu.copy()
+         grad_h[h<0] = 0
+         grad_w1 = x.t().mm(grad_h)
+
+         # Update weights using gradient decent
+         w1 -= learning_rate*grad_w1
+         w2 -= learning_rate*grad_w2
+   #+END_SRC
+   
+* Autograd
+
+** PyTorch: Variables and autograd
+   
+   在上面的示例中，我们手动实现了 BP 算法，在 =PyTorch= 中，提供了自动计算梯度的 =autograd=. 在 =PyTorch= 中，
+   如果使用 =autograd= 算法，网络的前向传播将会定义出一个 *computation graph*; 计算图中的节点 (node) 对应 =Tensor=,
+   连线对应函数，接收输入的 =Tensors=, 输出 =Tensors=.
+   
+   =PyTorch= 将 =PyTorch Tensors= 封装在 =Variable= 对象中。一个 =Variable= 对象对应计算图中的一个 =node=.
+   如果 =x= 是一个 =Variable=, 那么 =x.data= 是一个 =Tensor=, =x.grad= 是另一个 =Tensor=, 记录着 =x= 根据
+   某个 =scalar= 的梯度。
+   
+   =PyTorch= 的 =Variable= 对象的 =API= 和 =PyTorch= 的 =Tensor= =API= 一样。 下面的代码是利用 =PyTorch= 的
+   =autograd= 实现上述示例的代码
+
+   #+BEGIN_SRC python
+     # -*- coding: utf-8 -*-
+
+     import torch
+     from torch.autograd import Variable
+
+     dtype = torch.FloatTensor
+
+     N, D_in, H, D_out = 64, 1000, 100, 10
+
+     x = Variable(torch.randn(N, D_in).type(dtype), requires_grad=False)
+     y = Variable(torch.randn(N, D_out).type(dtype), requires_grad=False)
+
+     w1 = Variable(torch.randn(D_in, H).type(dtype), requres_grad=True)
+     w2 = Variable(torch.randn(H, D_out).type(dtype), requres_grad=True)
+
+     learning_rate = 1e-6
+     for t in range(500):
+         y_pred = x.mm(w1).clamp(min=0).mm(w2)
+
+         loss = (y_pred-y).pow(2).sum()
+         print(t, loss)
+
+         loss.backward()
+
+         w1.data -= learning_rate*w1.grad.data
+         w2.data -= learning_rate*w2.grad.data
+
+         w1.grad.data.zero_()
+         w2.grad.data.zero_()
+   #+END_SRC
+
+* PyTorch: Defining new autograd functions
+  
+  =PyTorch= 中， 预定义的 =autograd= 主要包括两个函数：
+
+  - =forward= 函数：根据输入的 =Tensor= 计算并输出新的 =Tensor=
+  - =backward= 函数： 接收输出 =Tensor= 对应的梯度，然后计算输入的 =Tensor= 的梯度
+
+  因此，如果要重写 =autograd=, 需要重写 =forward= 和 =backward= 函数。 在 =PyTorch= 中，我们可以通过重新定义一个
+  子类 =torch.autograd.Function= 并实现 =forward= 和 =backward= 来实现我们自己的 =autograd=.
+
+  下面是对 =ReLU= 的梯度计算自定义示例：
+
+  #+BEGIN_SRC python
+    # -*- coding: utf-8 -*-
+    import torch
+  #+END_SRC
