@@ -5,22 +5,25 @@
 
 * Personal
   
-** NEXT 台湾大学李宏毅 -- Machine Learning [0/22]
-   SCHEDULED: <2017-11-03 周五 08:30>
+** NEXT 台湾大学李宏毅 -- Machine Learning [3/22]
+   SCHEDULED: <2017-11-09 周四 14:30>
    :LOGBOOK:
+   CLOCK: [2017-11-09 周四 15:34]--[2017-11-09 周四 15:59] =>  0:25
+   CLOCK: [2017-11-09 周四 14:55]--[2017-11-09 周四 15:20] =>  0:25
+   CLOCK: [2017-11-09 周四 14:24]--[2017-11-09 周四 14:49] =>  0:25
    CLOCK: [2017-11-06 周一 08:39]--[2017-11-06 周一 09:04] =>  0:25
    CLOCK: [2017-11-03 周五 13:38]--[2017-11-03 周五 14:03] =>  0:25
    CLOCK: [2017-11-03 周五 13:06]--[2017-11-03 周五 13:31] =>  0:25
    CLOCK: [2017-11-02 周四 11:05]--[2017-11-02 周四 11:30] =>  0:25
    :END:
    
-   - [ ] What is Machine Learning
+   - [X] What is Machine Learning
    
-   - [ ] Neural Network
+   - [X] Neural Network
 
-   - [ ] Backpropagation
+   - [X] Backpropagation -- Be careful of notation and chain rules 
 
-   - [ ] Theano-DNN
+   - [ ] Theano-DNN -- Due to the dropout of DNN, I'm trying Pytorch
 
    - [ ] Tips For Training DNN
 
