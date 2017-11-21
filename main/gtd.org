@@ -4,15 +4,34 @@
 * Work 
   
 ** Tasks
-   
+    
 ** Projects
-   
+      
+*** TODO KMeans Modeling in Stock Market
+    
+    - [ ] 投稿期刊与期刊要求
+    - [ ] 文章概览
+    - [ ] 主体内容
+      - [ ] 代码准备
+      - [ ] 图片准备
+      - [ ] 参考文献准备
+    - [ ] 投稿
+
 * Personal
   
 ** Tasks 
      
-*** NEXT 遗传算法
+*** NEXT Tensorflow 实现 RNN
     :LOGBOOK:
+    CLOCK: [2017-11-20 周一 21:46]--[2017-11-20 周一 22:11] =>  0:25
+    :END:
+*** NEXT 遗传算法
+    SCHEDULED: <2017-11-21 周二 14:45>
+    :PROPERTIES:
+    :Effort:   60
+    :END:
+    :LOGBOOK:
+    CLOCK: [2017-11-21 周二 14:47]--[2017-11-21 周二 15:09] =>  0:22
     CLOCK: [2017-11-20 周一 13:55]--[2017-11-20 周一 14:20] =>  0:25
     CLOCK: [2017-11-20 周一 13:25]--[2017-11-20 周一 13:50] =>  0:25
     CLOCK: [2017-11-19 周日 11:27]--[2017-11-19 周日 11:52] =>  0:25
@@ -20,18 +39,18 @@
     CLOCK: [2017-11-19 周日 10:22]--[2017-11-19 周日 10:47] =>  0:25
     :END:
     
-*** 纯 =Numpy= 实现神经网络 
+*** TODO 纯 =Numpy= 实现神经网络
     
 ** Projects
    
-*** NEXT PyTorch 学习
+*** WAITING PyTorch 学习                                            :WAITING:
     :LOGBOOK:
     CLOCK: [2017-11-07 周二 15:44]--[2017-11-07 周二 16:09] =>  0:25
     CLOCK: [2017-11-07 周二 15:14]--[2017-11-07 周二 15:39] =>  0:25
     CLOCK: [2017-11-07 周二 14:44]--[2017-11-07 周二 15:09] =>  0:25
     :END:
    
-*** TODO VNPY 学习
+*** WAITING VNPY 学习                                               :WAITING:
 *** NEXT 台湾大学李宏毅 -- Machine Learning [3/22]
     SCHEDULED: <2017-11-09 周四 14:30>
     :LOGBOOK:
@@ -94,11 +113,9 @@
     - [ ] Unsupervised Learning
 
     - [ ] Attention-based Model
-   
+*** TODO Tensorflow Tutorial
+    
 * Miscellaneous
-
-** NEXT 林晓勇公司纪要
-   
 * Habit
 
 ** NEXT TradeBlazer 日常策略系列
@@ -122,6 +139,6 @@
    
 *** WAITING 反应趋势交易系统 (RTS)                                  :WAITING:
     
-*** NEXT 自适应交易系统
+*** WAITING 自适应交易系统                                          :WAITING:
 
 ** NEXT 掘金量化日常策略系列
