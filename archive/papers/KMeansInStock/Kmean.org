@@ -1,0 +1,39 @@
+#+TITLE: K-means in Stock Market Modeling
+#+AUTHOR: HuChen
+
+* Abstract
+  
+  Stock market has traditionally been considered a very complex system which make it's
+  difficult to describe or predict. Nevertheless, it's a reflection of humanity and somewhat
+  make it's possible to do research and prediction.
+  
+  In this paper, we'll try to do clustering of China's stock market. A basic hypothesis that
+  history will replay and similar movement of stock price can be used to predict the future.
+  Fortunately, a back-test of our trading strategy which developed from clustering results
+  suggest it's a effective or in other words, a clustering method can be used to study our
+  stock market. With such conclusion, traditional behavior finance may be application in
+  clustering results which reduce significantly noise.
+
+* Introduction
+
+  Since the entry of WTO, China has been playing more and more import role in World's
+  economy system due to its exploding growth. Along with the money from worldwide, 
+  advanced ideas such as quantitative investment has also been introduced. 
+  
+  Because of strictly disciple and decisive entry and exist point, quantitative investment
+  can effectively avoid weakness of human nature and help investors do more reasonable 
+  decisions.
+
+** Quantitative Investment 
+   
+** Introduction of K-means
+   
+* Modeling Stock Market Using K-means
+
+** Basic Idea
+
+** Method
+
+** Test
+
+* Discussion

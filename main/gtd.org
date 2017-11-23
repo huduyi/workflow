@@ -7,11 +7,17 @@
     
 ** Projects
       
-*** TODO KMeans Modeling in Stock Market
+*** NEXT KMeans Modeling in Stock Market [2/4]
+    SCHEDULED: <2017-11-22 周三 16:50>
+    :LOGBOOK:
+    CLOCK: [2017-11-23 周四 14:05]--[2017-11-23 周四 14:30] =>  0:25
+    CLOCK: [2017-11-22 周三 16:47]--[2017-11-22 周三 17:03] =>  0:16
+    :END:
     
-    - [ ] 投稿期刊与期刊要求
-    - [ ] 文章概览
-    - [ ] 主体内容
+    - [X] 投稿期刊与期刊要求
+    - [X] 文章概览
+    - [-] 主体内容
+      - [X] 内容框架 
       - [ ] 代码准备
       - [ ] 图片准备
       - [ ] 参考文献准备
@@ -113,7 +119,11 @@
     - [ ] Unsupervised Learning
 
     - [ ] Attention-based Model
-*** TODO Tensorflow Tutorial
+*** NEXT 动手学深度学习
+    SCHEDULED: <2017-11-23 周四 10:00>
+    :LOGBOOK:
+    CLOCK: [2017-11-23 周四 10:03]--[2017-11-23 周四 10:28] =>  0:25
+    :END:
     
 * Miscellaneous
 * Habit
