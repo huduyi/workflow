@@ -33,28 +33,52 @@
   been introduced from those who earned money, such as Turtle Trading Rules, Bollinger Bands,
   KDJ and so on.
 
-  Nevertheless, with more and more people use the limited techniques, it's been difficult to 
+  Nevertheless, with more and more people use the similar techniques, it's been difficult to 
   earn money as old days. Recently, with the development of Computer Science, machine learning
   has been hot in a variety of aspects including financial market. Despite those complex algorithms,
   in this paper, we just use a simple clustering method which is well-known as K-means method to
   study China's stock market. 
 
   A very important reason why we use such simple algorithm is the limitation of data scale. 
-  Due to the short history, there may not be enough data to feed such as neural network. For a 
-  long time, the special constitution of China's investors make it hard to simply apply the 
+  Due to the short history, there may not be enough data to feed complex algorithms such as neural 
+  network. For a long time, the special constitution of China's investors make it hard to simply apply the 
   foreign financial data. On the other side, our study suggest a lot even with such simple
   clustering method.
-
-** Quantitative Investment 
-   
-** Introduction of K-means
    
 * Modeling Stock Market Using K-means
 
 ** Basic Idea
+   
+   Some techniques believe there exists signals when the stock price is about to going down or going
+   up and for that they've develop technical indicators such as dual moving average, kdj, bollinger
+   bands and so on. Some experienced investors even can do decisions just depending on the k line graph.
+   From this point, stock price not only reflect the capital volatility, but the market psychology.
+
+   K-line may exist some similar pattern which can reflect the market volatility. For stock market,
+   common patterns in market chase seems manifest. Nevertheless, we'll trying to do a clustering to
+   check if there does exist such patterns.
 
 ** Method
 
-** Test
+   1. Collection of Stock Market Information
+
+      There exist some tools like TradeBlazer, GoldenMiner, tushare and others which can obtain stock
+      price information. Using those techniques, we've collected China's stock market information from
+      2006 to 2017. Then, with help of MySQL, we've stored those stock prices. Figures below shows the
+      data structure we've used for storage.
+      
+   2. Clustering Method
+
+      Simple k-means method is used for clustering. Samples for doing clustering are limited for such 
+      method due to performance. Therefore, we've randomly choose samples from what we've collected.
+      To obtain those typical stock prices, we ignore those stocks which have less than 120 K-lines.
+      From those stocks, we've randomly pick 200 samples and for each stock, we've pick 20 continuous
+      k-lines. After those procedure, k-means algorithm is applied on these data. For convenience, we
+      set the clusters number as 20. Continuous 5 k-lines, 10 k-lines, 15 k-lines and 20 k-lines are
+      tested for clustering. Figures below showed the clustering results.
+      
+   3. Stock Price Movement for Each Cluster
+      
+** Performance of Application of Clustering Results
 
 * Discussion
