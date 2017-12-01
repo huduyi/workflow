@@ -1,0 +1,63 @@
+#+TITLE: 动手学深度学习
+
+* 预备知识 
+
+** 使用 =NDArray= 处理数据
+   
+** 使用 =autograd= 来自动求导
+    
+   首先导入相关包 
+   #+BEGIN_SRC python
+     import mxnet.ndarray as nd
+     import mxnet.autograd as ag
+   #+END_SRC
+
+*** 为变量赋上梯度
+    如果我们想对 $f = 2x^2$ 进行求导
+    1. 首先创建变量并赋初值，在进行求导时，我们还需要一个地方存放 =x= 的导数，可以通过 =NDArray= 的方法 
+       `attach_grad()` 来要求系统申请对应的空间
+       #+BEGIN_SRC python
+         x = nd.array([[1, 2], [3, 4]])
+         x.attach_grad()
+       #+END_SRC
+    2. 定义需要求导的函数 =f=, 默认条件下， =MXNet= 不会记录用于求导的计算图，我们需要使用 =autograd=
+       里的 `record()` 函数显示要求 =MXNet= 记录我们求导的程序
+       #+BEGIN_SRC python
+         with ag.record():
+             y = x*2
+             z = y*x
+       #+END_SRC
+    3. 通过 `z.backward()` 来进行求导，如果 =z= 不是变量，那么 `z.backward()` 等价于 `nd.sum(z).backward()`
+       #+BEGIN_SRC python
+         z.backward()
+       #+END_SRC
+    4. 输出结果
+       #+BEGIN_SRC python
+         print('x.grad: ', x.grad)
+         x.grad == 4*x
+       #+END_SRC
+
+*** 对控制流求导
+
+    考虑下面的程序，里面包含控制流 =for= 和 =if=, 但循环次数和判断语句的执行都取决于输入的值，不同的输入会导致该
+    程序的执行不一样，对于计算图框架而言，这个对应于动态图，就是图的结构会依据输入数据不同而改变。
+    #+BEGIN_SRC python
+      def f(a):
+          b = a*2
+          while nd.norm(b).asscalar() < 1000:
+              b = b*2
+          if nd.sum(b).asscalar() > 0:
+              c = b
+          else:
+              c = 100*b
+          return c
+
+      a = nd.random_normal(shape=3)
+      a.attach_grad()
+      with ag.record():
+          c = f(a)
+
+      c.backward()
+
+      a.grad == c/a
+    #+END_SRC
